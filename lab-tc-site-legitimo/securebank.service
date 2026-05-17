@@ -1,0 +1,15 @@
+[Unit]
+Description=SecureBank - Simulação Acadêmica MITM (Flask)
+After=network.target
+
+[Service]
+Type=simple
+User=%DEPLOY_USER%
+WorkingDirectory=/opt/securebank
+ExecStart=/opt/securebank/venv/bin/python3 /opt/securebank/server.py
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

